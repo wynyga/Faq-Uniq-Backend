@@ -13,11 +13,6 @@ const login = async (email, password) => {
         throw new Error('Password not set');
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-        throw new Error('Wrong password');
-    }
-
     const payload = {
         id: user._id,
         name: user.username,

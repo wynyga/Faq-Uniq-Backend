@@ -5,7 +5,7 @@ import { searchFaqValidation } from "../validations/faq-validation.js"
 import { validate } from "../validations/validation.js"
 
 const getMany = async () => {
-  const faq = await db.collection("faq").find().toArray()
+  const faq = await db.collection("faq_category").find().toArray()
 
   return faq
 }
