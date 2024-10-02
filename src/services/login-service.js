@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { db } from "../application/database.js"; // Hilangkan titik koma di sini
+import { db } from "../application/database.js"; 
 
 const login = async (email, password) => {
     const user = await db.collection('admin').findOne({ email: email });
@@ -11,6 +11,11 @@ const login = async (email, password) => {
 
     if (!user.password) {
         throw new Error('Password not set');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        throw new Error('Wrong password');
     }
 
     const payload = {
@@ -32,4 +37,4 @@ const login = async (email, password) => {
     };
 };
 
-export default { login }; // Ganti dengan 'export default'
+export default { login };
