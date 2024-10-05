@@ -12,8 +12,6 @@ const register = async (username, email, password) => {
     // Hash password menggunakan bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    
-
     // Buat object user baru
     const newUser = {
         username: username,

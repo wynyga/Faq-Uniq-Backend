@@ -5,6 +5,7 @@ const mongodbUri = process.env.MONGODB_URI
 
 const client = new MongoClient(mongodbUri)
 let db
+let search
 
 const connectToMongoDB = async ()=>{
   try {
@@ -12,13 +13,14 @@ const connectToMongoDB = async ()=>{
     logger.info("Connected to MongoDB")
 
     db = client.db("chat_support")
+
+    search = client.db("faqmagang")
   } catch (err) {
     logger.error(err)
   }
 }
-
 connectToMongoDB()
-
 export{
-  db
+  db,
+  search
 }
